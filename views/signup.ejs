@@ -1,0 +1,23 @@
+<%- include('nav.ejs') %>
+
+    <body>
+        <div class="container">
+            <h1 class="pageHeader">Welcome</h1>
+            <div class="loginForm">
+                <h2>Sign Up</h2>
+                <form method="POST" action="/signup" enctype="multipart/form-data">
+                    <input type="text" name="fullname" placeholder="Your Name" class="login-full-name">
+
+                    <input type="text" name="username" placeholder="Choose a Username" class="login-username">
+        
+                    <input type="password" name="password" placeholder="Choose a Password" class="login-password">
+                    <input type="date" name="birthday" placeholder="Birthday">
+                    <input type="submit" name="submitbutton" value="Create Account" class="submit-btn">
+                    </form>
+                    <a href="/login">Already have an account? Log in here!</a>
+            </div>
+        </div>
+    </body>
+
+
+    <%- include('footer.ejs') %>

@@ -1,0 +1,4 @@
+{"username":"harrydnewman","fullname":"Harry","password":"$2b$10$WHZUW4CEg4UuABE6O7LzjOtG9nHEDIYdYT.ni8CO1zA5Pl6hlN8k.","birthday":"2002-10-09","is21":true,"_id":"1MdO8g3JIMjHivZK"}
+{"username":"harry123","fullname":"Harry","password":"$2b$10$/F.t4Xe3hpBN8izZ5Q0C6uh38YLK1Hrw9/ycJZnLNOKk/JVNZmUS6","birthday":"2003-10-09","is21":false,"_id":"D1wGQrES9WMKpwmV"}
+{"username":"JoeUnderage","fullname":"Joe","password":"$2b$10$inkkCPXn1k5qaJAtj6FV0eG8wuqNmRsIYDwbpC1nENTmiIJKKkJ3q","birthday":"2004-04-18","is21":false,"_id":"Lqw52kH3cXJvyhFR"}
+{"username":"u","fullname":"u","password":"$2b$10$5KWzVYo/gi.gJsL5NohDVexdt3jbd37w7CwWVTxVJ8HB8GitXlXMW","birthday":"2003-10-09","is21":false,"_id":"W2oTcEm1Lr2IHKV4"}
