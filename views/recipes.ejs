@@ -1,0 +1,16 @@
+<%- include('nav.ejs') %>
+
+
+<body>
+    <h1>recipes.ejs</h1>
+    <% recipes.forEach(function(recipe) { %>
+        <li>
+            <h2><%= recipe.name %></h2>
+            <p><%= recipe.description %></p>
+            <!-- Add more details as needed -->
+        </li>
+    <% }); %>
+</body>
+
+
+<%- include('footer.ejs') %>
