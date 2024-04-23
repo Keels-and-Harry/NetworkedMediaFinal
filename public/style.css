@@ -518,8 +518,44 @@ body {
 
 
 
+/* RECIPES LIST CSS */
+
+.recipeHeader {
+	display: flex;
+	justify-content: center;
+}
+.recipes {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	margin-left: 10%;
+}
+.singleRecipe{
+  border: 3px solid var(--backgroundColorPop);
+  display: flex;
+  height: 200px;
 
 
+}
+
+/* .singleRecipe img{
+  border: 3px solid var(--backgroundColorPop);
+
+
+} */
+
+.recipeListInfo{
+  margin-left: 4px;
+}
+
+.recipeListImage img {
+	/* width: 100%; */
+	object-fit: contain;
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+}
 
 
 

@@ -1,16 +1,40 @@
 <%- include('nav.ejs') %>
 
 
-<body>
-    <h1>recipes.ejs</h1>
-    <% recipes.forEach(function(recipe) { %>
-        <li>
-            <h2><%= recipe.name %></h2>
-            <p><%= recipe.description %></p>
-            <!-- Add more details as needed -->
-        </li>
-    <% }); %>
-</body>
+    <body>
+        <h1 class="recipeHeader">Recipes</h1>
+        <div class="recipes">
+            <% recipes.forEach(function(recipe) { %>
+                <div class="singleRecipe">
+
+                    <% if (recipe.filepath){ %>
+                        <img src="<%= recipe.filepath %>" alt="Uploaded Image">
+                        <% } %>
+
+                            <div class="recipeListInfo">
+
+                                <a href="recipe/<%=recipe._id%>">
+                                    <h2>
+                                        <%= recipe.name %>
+                                    </h2>
+                                </a>
+                                <p>
+                                    <%= recipe.description %>
+                                </p>
+                                <!-- <p>
+                            <%= recipe.category %>
+                        </p> -->
+                                <!-- <% if (recipe.category=="Drinks" ) {%>
+                            <p>
+                                <%= recipe.alcoholic %>
+                            </p>
+                            <% } %> -->
+                            </div>
+                </div>
+                <% }); %>
+
+        </div>
+    </body>
 
 
-<%- include('footer.ejs') %>
+    <%- include('footer.ejs') %>
