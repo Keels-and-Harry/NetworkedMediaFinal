@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+
+<%- include('nav.ejs') %>
+
+<body>
+    <h1><%=post.name%></h1>
+    <p>By: <%=post.firstName%></p>
+    <h1><%=post.description%></h1>
+    <h1><%=post.category%></h1>
+    <% if(post.category == "Drinks"){ %>
+        <h1><%=post.alcoholic%></h1>
+    <%}%>
+<h1>Ingredients</h1>
+        <ul>
+            <% for (let ingredientsX = 0; ingredientsX < post.ingredients.length; ingredientsX++) { %>
+              <li><%= post.ingredients[ingredientsX] %></li>
+            <% } %>
+          </ul>
+
+    <h1><%=post.instructions%></h1>
+
+
+</body>
+
+
+<%- include('footer.ejs') %>

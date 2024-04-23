@@ -314,7 +314,7 @@ app.post("/addRecipe", upload.single("image"), requiresAuthentication, async (re
   if (drink == true){
     data = {
       name: req.body.recipeName,
-      description: req.body.recipeDescription,
+      description: req.body.recipeDescription, 
       category: req.body.category,
       alcoholic: req.body.alcoholCategory,
       ingredients: ingredientsArray,
@@ -418,6 +418,22 @@ function getUserData(loggedInUser) {
     });
   });
 }
+
+app.get("/recipe/:id", (req, res) => {
+  let id = req.params.id;
+
+  let query = {
+    _id: id,
+  };
+
+  console.log(query);
+
+  database.findOne(query, (err, individualPost) => {
+    res.render("singlePost.ejs", { post: individualPost });
+  });
+});
+
+
 
 
 function getDate() {
