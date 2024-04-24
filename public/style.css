@@ -15,6 +15,22 @@ body {
   background-color: var(--backgroundColor);
 }
 
+/* @font-face {
+  font-family: "mynerve", sans-serif;
+  src: url(https://use.typekit.net/wtb5yvv.css);
+} */
+
+h1 {
+font-family: "mynerve", sans-serif;
+font-weight: 400;
+font-style: normal;
+}
+/* p{
+  font-family: brandon-grotesque, sans-serif;
+  font-style: normal;
+  font-weight: 100;;
+} */
+
 .container {
   width: 100%;
 }
@@ -539,12 +555,6 @@ body {
 
 }
 
-/* .singleRecipe img{
-  border: 3px solid var(--backgroundColorPop);
-
-
-} */
-
 .recipeListInfo{
   margin-left: 4px;
 }
@@ -557,24 +567,84 @@ body {
 	justify-content: flex-start;
 }
 
+/* RECIPES Single CSS */
+
+.singleRecipeHeader{
+  display: flex;
+}
+
+.singleRecipeHeader img{
+  max-width: 200px;
+}
+
+.recipeName {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+}
+
+.singleRecipeDiv{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
 
 
 
+/* MAP PAGE */
+.MapBox {
+	width: 80%;
+	display: flex;
+	margin-left: 10%;
+  border: 1px solid black;
+}
+#map {
+	height: 500px;
+	position: relative;
+	border-right: 1px solid black;
+	width: 100%;
+}
+
+.mapListButton {
+  height: 50px;
+  background-color: aquamarine;
+  border: 1px solid black;
+  z-index: 0;
+}
+
+.mapListResetButton {
+	height: 47.5;
+	background-color: aquamarine;
+	border: 1px solid black;
+}
+
+.mapListResetButton p{
+  color: black;
+	font-size: 15;
+	text-align: center;
+}
 
 
+.mapListButton p {
+	color: black;
+	font-size: 15;
+	text-align: center;
+}
+.mapList {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	height: 500px;
+	overflow-y: auto;
+}
 
+.hiddenData {
+  display: none;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.blurRecipe {
+  filter: blur(20px);
+}
 
 
 

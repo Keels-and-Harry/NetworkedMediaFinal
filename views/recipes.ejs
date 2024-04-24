@@ -2,10 +2,13 @@
 
 
     <body>
+        <p class="hiddenData"><%= is21 %></p>
+        <p><%= is21 %></p>
         <h1 class="recipeHeader">Recipes</h1>
+       
         <div class="recipes">
             <% recipes.forEach(function(recipe) { %>
-                <div class="singleRecipe">
+                <div class="singleRecipe<% if (is21 == false){if(recipe.alcoholic === 'alcoholic') { %> blurRecipe<% }} %>">
 
                     <% if (recipe.filepath){ %>
                         <img src="<%= recipe.filepath %>" alt="Uploaded Image">
@@ -13,7 +16,7 @@
 
                             <div class="recipeListInfo">
 
-                                <a href="recipe/<%=recipe._id%>">
+                                <a href="/recipes/<%= recipe._id %>?is21=<%= is21 %>">
                                     <h2>
                                         <%= recipe.name %>
                                     </h2>
@@ -21,19 +24,24 @@
                                 <p>
                                     <%= recipe.description %>
                                 </p>
-                                <!-- <p>
+                                <p>
                             <%= recipe.category %>
-                        </p> -->
-                                <!-- <% if (recipe.category=="Drinks" ) {%>
+                        </p>
+                               <% if (recipe.category=="Drinks" ) {%>
                             <p>
-                                <%= recipe.alcoholic %>
+                                
                             </p>
-                            <% } %> -->
+                            <% } %>
                             </div>
                 </div>
                 <% }); %>
 
         </div>
+        <script>
+            let ofAgeCheck =  <%= is21 %>
+            console.log(ofAgeCheck);
+            
+        </script>
     </body>
 
 

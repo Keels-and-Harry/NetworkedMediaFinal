@@ -116,9 +116,7 @@ app.get("/logout", (req, res) => {
 
 
 app.get('/', (req, res) => {
-  const currentDate = getDate();
-  // need to add another thing for getting the fun fact of the day
-  res.render('index.ejs', { currentDate });
+  res.render('index.ejs');
 });
 
 app.get('/21check', (req, res) => {
@@ -152,28 +150,91 @@ app.get('/disclaimer', (req, res) => {
 // let docs;
 let databaseData;
 app.get('/recipes', (req, res) => {
-  let databaseData = database.find({}, (err, docs) => {
-    if (err){
-      console.error('Error finding documents:', err);
-    return;
+  // Check if the user is logged in
+  if (req.session.loggedInUser) {
+    // User is logged in, fetch user data to determine if they are 21
+    getUserData(req.session.loggedInUser)
+      .then(userData => {
+        // Determine if the user is 21
+        let is21 = userData.canDrink;
+        // Fetch the recipes data
+        database.find({}, (err, docs) => {
+          if (err) {
+            console.error('Error finding documents:', err);
+            return;
+          }
+          // Render the 'recipes.ejs' page and send the data
+          res.render('recipes.ejs', { recipes: docs, is21: is21 });
+        });
+      })
+      .catch(error => {
+        console.error(error);
+        // Redirect to login if there's an error retrieving user data
+        res.redirect('/login');
+      });
+  } else {
+    // User is not logged in, redirect to the '/21check' page
+    res.redirect('/21check');
+  }
+});
+
+
+app.get("/account", requiresAuthentication, async (request, response) => {
+  if (request.session.loggedInUser) {
+    // console.log(request.session.loggedInUser);
+    // console.log(request.cookies.visits);
+    if (request.cookies.visits) {
+      let newVisit = parseInt(request.cookies.visits) + 1;
+      response.cookie("visits", newVisit, {
+        expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
+      });
+    } else {
+      response.cookie("visits", 1, {
+        expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
+      });
     }
-    res.render('recipes.ejs', { recipes: docs });
-  })
+
+    try {
+      let userData = await getUserData(request.session.loggedInUser);
+
+      let query = {};
+
+      let sortQuery = {
+        timestamp: -1,
+      };
+
+     
+      
+      database
+        .find(query)
+        .sort(sortQuery)
+        .exec((err, data) => {
+          response.render("account.ejs", {
+            posts: data,
+            visitsToSite: request.cookies.visits,
+            username: userData.username,
+            firstName: userData.firstName,
+            birthday: userData.birthday,
+            canDrink: userData.canDrink,
+            currentTime: '00000000',
+            
+          });
+        });
+    } catch (error) {
+      console.error(error);
+      response.redirect('/login');
+    }
+  } else {
+    response.redirect('/login')
+  }
 })
 
 
 
 
-app.post("/signup", upload.single("profilePicture"), (req, res) => {
-  // encrypting password so plain text is not store in db
-  let hashedPassword = bcrypt.hashSync(req.body.password, 10);
-
+// Function to determine if the user is 21 or not
+function isUser21(birthdate) {
   let dateTest = getDateForBirthday();
-
-  let birthdate = req.body.birthday;
-
-  let is21;
-
 
   let birthyear = birthdate.slice(0, 4);
   let birthmonth = birthdate.slice(5, 7);
@@ -183,70 +244,43 @@ app.post("/signup", upload.single("profilePicture"), (req, res) => {
   let currentMonth = dateTest.slice(5, 7);
   let currentDay = dateTest.slice(8, 10);
 
-
   let monthTest = birthmonth - currentMonth;
-  console.log("Month Test:", monthTest);
-  //birthday is in current month
+
+  // birthday is in current month
   if (monthTest == 0) {
-    let dayTest = birthday - currentDay
-    console.log("DayTest: ", dayTest);
-    //birthday has happened
+    let dayTest = birthday - currentDay;
+    // birthday has happened
     if (dayTest <= 0) {
       let yearTest = currentYear - birthyear;
-      console.log("Year Test:", yearTest);
-      if (yearTest > 20) {
-        is21 = true;
-      }
-       else{
-        is21 = false;
-      }
+      return yearTest > 20;
     }
-    //birthday hasn't happened yet
+    // birthday hasn't happened yet
     else if (dayTest > 0) {
-      let yearTest = currentYear - birthyear;
-      yearTest = yearTest - 1;
-      console.log("Year Test:", yearTest);
-      if (yearTest > 20) {
-        is21 = true;
-      }
-      else{
-        is21 = false;
-      }
+      let yearTest = currentYear - birthyear - 1;
+      return yearTest > 20;
     }
   }
-  //birthday hasnt happened yet
+  // birthday hasn't happened yet
   else if (monthTest > 0) {
-    let yearTest = currentYear - birthyear;
-    yearTest = yearTest - 1;
-    console.log("Year Test:", yearTest);
-    if (yearTest > 20) {
-      is21 = true;
-    }
-    else{
-      is21 = false;
-    }
-
+    let yearTest = currentYear - birthyear - 1;
+    return yearTest > 20;
   }
-  //birthday already happened
+  // birthday already happened
   else if (monthTest < 0) {
     let yearTest = currentYear - birthyear;
-    console.log("Year Test:", yearTest);
-    if (yearTest > 20) {
-      is21 = true;
-    }
-    else{
-      is21 = false;
-    }
+    return yearTest > 20;
   }
+}
 
-  if (is21 == true) {
-    console.log("User is 21");
-  }
-  else {
-    console.log("User is not 21");
-  }
+// Now use this function in your route handler
+app.post("/signup", upload.single("profilePicture"), (req, res) => {
+  // Encrypting password so plain text is not stored in the database
+  let hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
-  // local variable that holds my data obj to be inserted into userdb
+  // Determine if the user is 21
+  let is21 = isUser21(req.body.birthday);
+
+  // Prepare data object to be inserted into the database
   let data = {
     username: req.body.username,
     fullname: req.body.fullname,
@@ -255,15 +289,18 @@ app.post("/signup", upload.single("profilePicture"), (req, res) => {
     is21: is21,
   };
 
+  // Add filepath if a file is uploaded
   if (req.file) {
     data.filepath = "/uploads/" + req.file.filename;
   }
 
+  // Insert data into the database
   userDatabase.insert(data, (err, dataInserted) => {
     console.log(dataInserted);
     res.redirect("/login");
   });
 });
+
 
 app.post("/addRecipe", upload.single("image"), requiresAuthentication, async (req, res) => {
   if (req.session.loggedInUser) {
@@ -360,6 +397,21 @@ app.post("/addRecipe", upload.single("image"), requiresAuthentication, async (re
 }
 })
 
+app.post("/21CheckPost", (req, res) => {
+  let dateOfBirth = req.body.birthday;
+  let is21 = isUser21(dateOfBirth);
+
+  // Fetch the recipes data
+  let databaseData = database.find({}, (err, docs) => {
+    if (err) {
+      console.error('Error finding documents:', err);
+      return;
+    }
+    // Render the recipes page and send the 'is21' status and the recipes data
+    res.render("recipes.ejs", { is21: is21, recipes: docs });
+  });
+});
+
 app.post("/authenticate", (req, res) => {
     let attemptLogin = {
       username: req.body.username,
@@ -419,9 +471,30 @@ function getUserData(loggedInUser) {
   });
 }
 
-app.get("/recipe/:id", (req, res) => {
-  let id = req.params.id;
+app.get("/search", requiresAuthentication, (req, res) => {
+  let searchTerm = req.query.searchTerm;
 
+  let query = {
+    name: new RegExp(searchTerm),
+  };
+
+  database.find(query, (err, searchedData) => {
+    res.render("index.ejs", { posts: searchedData });
+  });
+});
+
+app.get("/recipes/:id", (req, res) => {
+  let id = req.params.id;
+  let is21 = req.query.is21; // Extract the is21 query parameter from the URL
+  console.log(is21);
+  console.log(req.params)
+
+  let data = {
+    is21: is21
+  }
+  console.log(data)
+
+  
   let query = {
     _id: id,
   };
@@ -429,30 +502,14 @@ app.get("/recipe/:id", (req, res) => {
   console.log(query);
 
   database.findOne(query, (err, individualPost) => {
-    res.render("singlePost.ejs", { post: individualPost });
+    res.render("singlePost.ejs", { post: individualPost, data: data });
   });
 });
 
 
 
 
-function getDate() {
-  const date = new Date();
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-  // Array of month names
-  const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ];
-  const monthName = monthNames[monthIndex];
-  let currentDate = (`${monthName} ${day}`)
-  console.log(currentDate);
-  return currentDate;
-}
+
 
 function getDateForBirthday() {
   const date = new Date();

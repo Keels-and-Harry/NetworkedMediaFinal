@@ -1,8 +1,172 @@
 <%- include('nav.ejs') %>
 
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    </head>
 
-<body>
-    <h1>margaritaville.ejs</h1>
-</body>
+    <body>
+        <h1>margaritaville.ejs</h1>
+        <div class="margaritavilleContainer">
+            <div class="MapBox">
 
-<%- include('footer.ejs') %>
+                <div id="map"></div>
+
+                <div class="mapList" id="mapListID"></div>
+
+            </div>
+            <p id="test">Test</p>
+        </div>
+
+        <script>
+            const locations = [
+                ["Atlanta", "Georgia", 33.75869600393093, -84.39213110546831, "Atlanta"],
+                ["Atlantic City", "New Jersey", 39.35866722628847, -74.42177109251783, "AtlanticCity"],
+                ["Biloxi", "Mississippi", 30.391450045003833, -88.8621469926114, "Biloxi"],
+                ["Bloomington", "Minnesota", 44.8542408269882, -93.2395121004003, "Bloomington"],
+                ["Boston", "Massachusetts", 42.36116586565431, -71.05519739686704, "Boston"],
+                ["Chicago", "Illinois", 41.89231609345571, -87.608281898831, "Chicago"],
+                ["Cleveland", "Ohio", 41.50112856971005, -81.705814220954, "Cleveland"],
+                ["Cozumel", "Mexico", 20.47913999391064, -86.97447674010576, "Cozumel"],
+                ["Destin", "Florida", 30.394147037664183, -86.51073532604495, "Destin"],
+                ["Grand Turk", "Turks and Caicos", 21.428673337011563, -71.14389684760695, "GrandTurk"],
+                ["Hollywood", "California", 34.13750948222499, -118.35002632595399, "HollywoodCA"],
+                ["Hollywood", "Florida", 26.019118287896752, -80.11568206384055, "HollywoodFL"],
+                ["Jacksonville Beach", "Florida", 34.13734263146754, -118.35045472917253, "JacksonvilleBeach"],
+                ["Key West", "Florida", 24.55605479166485, -81.80122318098812, "KeyWest"],
+                ["Las Vegas", "Nevada", 36.11731361497711, -115.17243919759272, "LasVegas"],
+                ["Montego Bay", "Jamaica", 18.4842383674283, -77.9289365839422, "MontegoBay"],
+                ["Myrtle Beach", "South Carolina", 33.716545058216084, -78.87420369132677, "MyrtleBeach"],
+                ["Nashville", "Tennessee", 36.16177622813143, -86.78112031743211, "Nashville"],
+                ["Negril", "Jamaica", 18.304838865160345, -78.33680421738434, "Negril"],
+                ["New York", "New York", 40.755150424448146, -73.98797715992735, "NewYork"],
+                ["Niagara Falls", "Ontario", 36.16174243103576, -86.77734311919207, "NiagaraFalls"],
+                ["Ocho Rios", "Jamaica", 18.40777263040599, -77.11052785284603, "OchoRios"],
+                ["Orlando", "Florida", 28.3418119758958, -81.60604931867505, "Orlando"],
+                ["Osage Beach", "Missouri", 38.128791943026556, -92.71625921966636, "OsageBeach"],
+                ["Palm Springs", "California", 33.84655002620888, -116.54387644922997, "PalmSprings"],
+                ["Panama City Beach", "Florida", 30.20058667573688, -85.84518803582542, "PanamaCityBeach"],
+                ["Paradise Island", "Bahamas", 25.081477572533196, -77.32094076251344, "ParadiseIsland"],
+                ["Pigeon Forge", "Tennessee", 35.80304198426884, -83.56852342156265, "PigeonForge"],
+                ["San Antonio", "Texas", 29.4235081832563, -98.48438030653706, "SanAntonio"],
+                ["Syracuse", "New York", 43.06842607674427, -76.16925833294333, "Syracuse"],
+                ["Tulsa", "Oklahoma", 36.04180986585833, -95.96093841782485, "Tulsa"],
+                ["South Padre Island", "Texas", 26.084076611197904, -97.1596161693933, "SouthPadreIsland"]
+            ];
+
+            let lat = 37.0902;
+            let long = -95.7129;
+            let zoom = 4;
+            let map = L.map('map').setView([lat, long], zoom);
+            let marker;
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            document.body.onload = addElement;
+            let mapListDiv = document.getElementById("mapListID");
+
+            function createResetButton() {
+                if (!document.getElementById("reset")) {
+                    let mapListDiv = document.getElementById('mapListID');
+                    let buttonDiv = document.createElement("div");
+                    buttonDiv.classList.add("mapListResetButton");
+                    buttonDiv.setAttribute("id", "reset");
+                    let pTag = document.createElement("p");
+                    let text = "Reset"
+                    pTag.textContent = text;
+                    buttonDiv.appendChild(pTag);
+                    let firstChild = mapListDiv.firstChild;
+                    buttonDiv.onclick = function () {
+                        console.log("Hello")
+                        document.getElementById('mapListID').removeChild(buttonDiv);
+                        lat = 37.0902;
+                        long = -95.7129;
+                        zoom = 4;
+                        map.setView([lat, long], zoom);
+                        if (marker) {
+                            marker.closePopup();
+                            marker.remove(); // Remove the marker from the map
+                            marker = null; // Reset marker variable
+                        }
+                    }
+
+
+                    // document.getElementById('reset').addEventListener("click", function () {
+                    //     console.log("hello");
+
+                    //     // 
+                    // });
+
+                    document.getElementById('mapListID').insertBefore(buttonDiv, mapListDiv.firstChild);
+
+                    return
+                }
+                else {
+                    console.log("already exists!")
+                }
+            }
+
+
+
+            function addElement() {
+                for (let x = 0; x < locations.length; x++) {
+                    let buttonDiv = document.createElement("div");
+                    buttonDiv.classList.add("mapListButton");
+                    buttonDiv.setAttribute("id", locations[x][4]);
+                    let pTag = document.createElement("p");
+                    let text = locations[x][0] + ", " + locations[x][1]
+                    pTag.textContent = text;
+                    buttonDiv.appendChild(pTag);
+
+
+                    buttonDiv.onclick = function () {
+                        createResetButton();
+                        let locationId = this.getAttribute("id");
+                        let lat = locations[x][2];
+                        let long = locations[x][3];
+                        let zoom = 13;
+                        console.log("Clicked location ID:", lat, long);
+                        map.setView([lat, long], zoom);
+                        let popupText = "Margaritaville " + locations[x][0];
+                        if (marker) {
+                            marker.setLatLng([lat, long]);
+                            marker.bindPopup(popupText)
+                        } else {
+                            marker = L.marker([lat, long]).addTo(map)
+                                .bindPopup(popupText)
+                                .openPopup();
+                        }
+
+                    };
+
+
+
+
+                    document.getElementById('mapListID').appendChild(buttonDiv);
+                }
+                return
+            }
+
+
+
+            document.getElementById("reset").addEventListener("click", function () {
+                document.getElementById("test").innerHTML = "Reset";
+                lat = 37.0902;
+                long = -95.7129;
+                zoom = 4;
+                map.setView([lat, long], zoom);
+                if (marker) {
+                    marker.closePopup();
+                    marker.remove(); // Remove the marker from the map
+                    marker = null; // Reset marker variable
+                }
+            });
+        </script>
+
+    </body>
+
+    <%- include('footer.ejs') %>
