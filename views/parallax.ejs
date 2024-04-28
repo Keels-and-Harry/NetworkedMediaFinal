@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .parallax {
+            /* The image used */
+            background-image: url("images/birthplace.png");
+            /* Set a specific height */
+            height: 500px;
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: relative;
+            /* transition: filter 0.3s ease-in-out; */
+        }
+
+        .scrollOverText {
+            /* text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            /* z-index: 1; */
+            color: black;
+            text-align: center;
+        }
+
+        .empty {
+            background-color: grey;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="parallax" id="parallaxDiv1">
+       
+    </div>
+    <div class="scrollOverText">
+        <p>Jimmy Buffett was born on December 25, 1946, in Pascagoula, Mississippi, USA, to James Delaney
+            Buffett Jr., a naval architect, and Mary Lorraine Peets.</p>
+    </div> -->
+    <div class="parallaxContainer" id="parallaxContainerID"></div>
+   
+    <div class="empty"></div>
+    <!-- <img src="../public/images/parallax1.png"> -->
+
+    <script>
+        let parallaxData = [
+            {
+                imageUrl: 'images/parallax1.png',
+                text:  "Jimmy Buffett was born on December 25, 1946, in Pascagoula, Mississippi, USA, to James Delaney Buffett Jr., a naval architect, and Mary Lorraine Peets."
+            },
+            {
+                imageUrl: 'images/parallax2.png',
+                text: "Raised in Mobile, Alabama, Buffett developed a love for music and learned to play the guitar as a teenager." 
+            }
+        ]
+
+        function createParallaxDivs(){
+            let container = document.getElementById("parallaxContainerID")
+            parallaxData.forEach(function(data) {
+                let parallaxDiv = document.createElement('div');
+                parallaxDiv.classList.add("parallax");
+                parallaxDiv.style.backgroundImage = 'url(' + data.imageUrl + ')';
+                let scrollOverText = document.createElement('div');
+                scrollOverText.classList.add('scrollOverText');
+                scrollOverText.innerHTML = '<p>' + data.text + '</p>';
+                container.appendChild(parallaxDiv);
+                container.appendChild(scrollOverText);
+
+
+            })
+        }
+
+        function handleScroll() {
+    let parallaxDivs = document.querySelectorAll('.parallax');
+    parallaxDivs.forEach(function (parallaxDiv) {
+        let scrollPosition = window.scrollY;
+        let parallaxDivTop = parallaxDiv.offsetTop;
+        let parallaxDivBottom = parallaxDivTop + parallaxDiv.offsetHeight; // Calculate the bottom position of the parallax div
+
+        // Check if the bottom of the parallax div is within the viewport
+        if (scrollPosition < parallaxDivBottom && scrollPosition > parallaxDivTop) {
+            // Calculate the blur value based on the distance between the scroll position and the top of the parallax div
+            let blurValue = Math.abs(scrollPosition - parallaxDivTop) / 30; // Adjust the divisor to control the blur intensity
+            parallaxDiv.style.filter = 'blur(' + blurValue + 'px)';
+        } else {
+            parallaxDiv.style.filter = 'blur(0px)'; // Reset blur if the parallax div is not within the viewport
+        }
+    });
+}
+
+        createParallaxDivs();
+        window.addEventListener('scroll', handleScroll);
+
+
+    </script>
+
+</body>
+</html>
