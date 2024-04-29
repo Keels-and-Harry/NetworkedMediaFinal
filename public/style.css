@@ -46,6 +46,9 @@ font-style: normal;
   padding: 10;
   /* top: 100%; */
   align-items: center;
+  position: fixed;
+  top: 0px;
+  z-index: 1;
 }
 
 .navBar-opacity {
@@ -680,12 +683,16 @@ font-style: normal;
 	width: 100%;
 	object-fit: cover;
 	height: 100vh;
-  z-index: -1;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  /* z-index: -1; */
+  background-image: url("/images/ripjimmy.png");
 }
 
-.RIPJimmyText{
-  z-index: 1;
-}
+
 
 
 
