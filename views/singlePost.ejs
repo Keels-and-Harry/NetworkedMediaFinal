@@ -10,9 +10,9 @@
 
 <!-- <%- include('nav.ejs') %> -->
 <body class="singleRecipeBackground">
-  <h1><%= data.is21 %></h1> 
+  <h1 class="hiddenData"><%= data.is21 %></h1> 
   <!-- false -->
-  <h1><%= post.alcoholic %></h1>
+  <h1 class="hiddenData"><%= post.alcoholic %></h1>
   <!-- alcoholic -->
   <div class="recipeContainer">
     <div class="singlePostBlurContainer<% if (data.is21 == false){if(post.alcoholic === 'alcoholic') { %> blurRecipe<% }} %>">
