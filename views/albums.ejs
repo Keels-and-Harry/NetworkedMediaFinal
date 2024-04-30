@@ -1,0 +1,90 @@
+<%- include('nav.ejs') %>
+
+<head>
+  <title>Jimmy Buffett Albums</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Jimmy Buffett Albums</h1>
+  </header>
+
+  <main id="albumList">
+    <!-- Album list will be dynamically populated -->
+  </main>
+
+  
+
+  <script >
+    const songs = [
+    {
+        title: "Cheeseburgers in Paradise",
+        image: "images/Track1Cover.jpeg",
+        audio: "music/1CheeseburgerInParadise.mp3"
+    },
+    {
+        title: "He Went to Paris",
+        image: "images/Track2Cover.jpg",
+        audio: "music/2HeWentToParis.mp3"
+    },
+    {
+        title: "Fins",
+        image: "images/Track3Cover.jpg",
+        audio: "music/3Fins.mp3"
+    },
+    {
+        title: "Son of a Son of a Sailor",
+        image: "images/Track4Cover.jpg",
+        audio: "music/4SonofaSonofaSailor.mp3"
+    },
+    {
+        title: "A Pirate Looks at Forty",
+        image: "images/Track4Cover.jpg",
+        audio: "music/5APirateLooksatForty.mp3"
+    },
+    {
+        title: "Margaritaville",
+        image: "images/Track6Cover.jpg",
+        audio: "music/6Margaritaville.mp3"
+    },
+    {
+        title: "Come Monday",
+        image: "images/Track7Cover.jpg",
+        audio: "music/7ComeMonday.mp3"
+    },
+    {
+        title: "Changes in Latitudes, Changes in Attitudes",
+        image: "images/Track8Cover.jpg",
+        audio: "music/8ChangesInLatitudesChangesInAttitudes.mp3"
+    },
+    {
+        title: "Why Dont We Get Drunk",
+        image: "images/Track9Cover.jpg",
+        audio: "music/9WhyDontWeGetDrunk.mp3"
+    },
+    {
+        title: "Pencil Thin Mustache",
+        image: "images/Track10Cover.jpg",
+        audio: "music/10PencilThinMustache.mp3"
+    },
+    {
+        title: "Grapefruit Juicy Fruit",
+        image: "images/Track11Cover.jpg",
+        audio: "music/11GrapefruitJuicyFruit.mp3"
+    },
+    {
+        title: "Boat Drinks",
+        image: "images/Track10Cover.jpg",
+        audio: "music/12BoatDrinks.mp3"
+    },
+    {
+        title: "Volcano",
+        image: "images/Track13Cover.jpg",
+        audio: "music/13Volcano.mp3"
+    },
+];
+
+  </script>
+</body>
+
+<%- include('footer.ejs') %>
