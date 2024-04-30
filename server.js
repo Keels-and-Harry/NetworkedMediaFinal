@@ -558,7 +558,7 @@ function getFact() {
 
 }
 
-const port = 6001
+const port = 6002
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
