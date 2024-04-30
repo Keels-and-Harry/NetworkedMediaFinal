@@ -21,9 +21,33 @@ body {
 } */
 
 h1 {
-font-family: "mynerve", sans-serif;
-font-weight: 400;
-font-style: normal;
+  font-family: "mynerve", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "mynerve", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3 {
+  font-family: "mynerve", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h4 {
+  font-family: "mynerve", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+p {
+  font-family: "mynerve", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 /* p{
   font-family: brandon-grotesque, sans-serif;
@@ -33,15 +57,14 @@ font-style: normal;
 
 .container {
   width: 100%;
-  background-color: rgba(162, 199, 229, .6);
+  background-color: rgba(162, 199, 229, 0.6);
 }
-
-
 
 /* NAV BAR STYLING */
 .navBar {
-  background-color:var(--backgroundColorPop);
+  background-color: var(--backgroundColorPop);
   width: 100%;
+  /* height: 60px; */
   height: 60px;
   display: flex;
   flex-direction: row;
@@ -53,7 +76,7 @@ font-style: normal;
   z-index: 1;
 }
 
-.navHolder{
+.navHolder {
   width: 100%;
   height: 60px;
   z-index: 0;
@@ -96,25 +119,33 @@ font-style: normal;
 }
 
 /* .navBarButtons button:hover { */
-  /* cursor: pointer; */
+/* cursor: pointer; */
 /* } */
 
 /* button animation */
 .navBarButtons button:hover {
   cursor: pointer;
-    background-color: rgba(4, 110, 143, 0.7) ;
-    border: 3px solid var(--accentColor);
-    animation: shake 0.5s ease-in-out infinite;
+  background-color: rgba(4, 110, 143, 0.7);
+  border: 3px solid var(--accentColor);
+  animation: shake 0.5s ease-in-out infinite;
 }
 
-
-
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px) rotate(3deg); }
-  50% { transform: translateX(5px) rotate(-3deg); }
-  75% { transform: translateX(-3px) rotate(2deg); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(3deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(-3deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .buttonText {
@@ -123,7 +154,6 @@ font-style: normal;
   padding: 5px;
   font-size: 17px;
 }
-
 
 /* FOOTER STYLING */
 
@@ -208,21 +238,25 @@ font-style: normal;
   align-items: center;
   margin-left: 15%;
   margin-right: 15%;
+  margin-top: 20px;
   padding: 20px;
   border-radius: 10px;
   border: 3px solid var(--backgroundColorPop);
 }
 
-.todaysDate{
-    font-size: 40px;
-    /* margin: 0; */
-    margin-top: 20px;
-    margin-bottom: 20px;
-  
+.factOfTheDayContainer {
+  height: 100vh;
 }
-.factOfTheDay h1{
-    margin: 0;
-    font-size: 70;
+
+.todaysDate {
+  font-size: 40px;
+  /* margin: 0; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.factOfTheDay h1 {
+  margin: 0;
+  font-size: 70;
 }
 
 .lifeOfJimmy {
@@ -266,7 +300,9 @@ font-style: normal;
   margin-top: 20px;
   display: flex;
   justify-content: center;
+
 }
+
 
 .logoutButtonDiv button {
   height: 60;
@@ -275,6 +311,14 @@ font-style: normal;
   border: 3px solid var(--backgroundColorPop);
   border-radius: 10px;
   width: 300px;
+  transition: transform .2s;
+}
+
+
+.logoutButtonDiv button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+
 }
 
 /* FORM STYLING */
@@ -385,20 +429,19 @@ font-style: normal;
   cursor: pointer;
 }
 
-
 .recipeCategory {
-	display: flex;
-	flex-direction: row;
-	margin-left: 20.3%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20.3%;
 }
 
 .alcoholCategory {
   display: none;
-	flex-direction: row;
-	margin-left: 20.3%;
+  flex-direction: row;
+  margin-left: 20.3%;
 }
 
-.selectedRadioButton{
+.selectedRadioButton {
   width: 20%;
   /* margin-left: 15%; */
   margin-bottom: 10px;
@@ -413,7 +456,7 @@ font-style: normal;
   margin-right: 5px;
 }
 
-.unselectedRadioButton{
+.unselectedRadioButton {
   width: 20%;
   /* margin-left: 15%; */
   margin-bottom: 10px;
@@ -428,23 +471,21 @@ font-style: normal;
   margin-right: 5px;
 }
 
-.selectedRadioButton p{
+.selectedRadioButton p {
   color: var(--textColor1);
-	display: flex;
+  display: flex;
   justify-content: center;
-	align-content: center;
-	margin: 12;
+  align-content: center;
+  margin: 12;
 }
 
 .unselectedRadioButton p {
-	color: var(--textColor2);
+  color: var(--textColor2);
   justify-content: center;
-	display: flex;
-	align-content: center;
-	margin: 12;
+  display: flex;
+  align-content: center;
+  margin: 12;
 }
-
-
 
 .ingredientsForm label {
   color: var(--textColor2);
@@ -576,42 +617,41 @@ font-style: normal;
   cursor: pointer;
 }
 
-
 /* 21 check */
 .ageCheck {
   height: 520px;
   width: 35%;
-  background-color: rgba(162, 199, 229,0.13);
+  background-color: rgba(162, 199, 229, 0.13);
   position: absolute;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 50px 35px;
   display: flex;
   flex-direction: column;
 }
 
-.ageCheck form{
+.ageCheck form {
   width: 100%;
 }
 
-.ageCheck h1{
+.ageCheck h1 {
   text-align: center;
   font-weight: bold;
 }
 
 .ageCheck input {
-width: 70%;
-margin-left: 15%; 
-margin-bottom: 10px;
-height: 40px;
-border-radius: 10px;
-border: 3px solid var(--backgroundColorPop);
-background-color: var(--backgroundColor);
+  width: 70%;
+  margin-left: 15%;
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 10px;
+  border: 3px solid var(--backgroundColorPop);
+  background-color: var(--backgroundColor);
 }
 
 .submit-btn {
@@ -619,70 +659,73 @@ background-color: var(--backgroundColor);
 }
 
 input.submit-btn:hover {
-    cursor: pointer;
-      background-color: rgba(4, 110, 143, 0.7) ;
-      border: 3px solid var(--accentColor);
-      animation: shake 0.5s ease-in-out infinite;
+  cursor: pointer;
+  background-color: rgba(4, 110, 143, 0.7);
+  border: 3px solid var(--accentColor);
+  animation: shake 0.5s ease-in-out infinite;
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px) rotate(3deg); }
-  50% { transform: translateX(5px) rotate(-3deg); }
-  75% { transform: translateX(-3px) rotate(2deg); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(3deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(-3deg);
+  }
+  75% {
+    transform: translateX(-3px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-
 
 /* RECIPES LIST CSS */
 
-.cooking{
+.cooking {
   background-color: white;
 }
 
 .recipeHeader {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .recipes {
-	width: 80%;
-	display: flex;
-	flex-direction: column;
-	/* justify-content: center; */
-	margin-left: 10%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  margin-left: 10%;
 }
-.singleRecipe{
+.singleRecipe {
   border: 3px solid var(--backgroundColorPop);
   display: flex;
   height: 200px;
 }
 
-.blurHolder{
-    display: flex;
-    width: 100%;
-  
+.blurHolder {
+  display: flex;
+  width: 100%;
 }
 
-.blurHolder img{
- 
-    height: 100%;
-    object-fit: cover;
-  
+.blurHolder img {
+  height: 100%;
+  object-fit: cover;
 }
 
-
-
-
-.recipeListInfo{
+.recipeListInfo {
   margin-left: 4px;
 }
 
 .recipeListImage img {
-	/* width: 100%; */
-	object-fit: contain;
-	height: 100%;
-	display: flex;
-	justify-content: flex-start;
+  /* width: 100%; */
+  object-fit: contain;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* RECIPES Single CSS */
@@ -692,132 +735,161 @@ input.submit-btn:hover {
   color: black;
 }
 
-.singleRecipeHeader{
-  display: flex;
-  position: relative;
-}
-
-.singleRecipeHeader img{
-  max-width: 200px;
-}
-
 .recipeName {
 	display: flex;
 	flex-direction: column;
 	width: 60%;
 } */
 
-
-.singleRecipeBackground{
-  background-image: url('images/recipebackground.jpeg'); 
+.singleRecipeBackground {
+  background-image: url("images/recipebackground.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-
 .recipeContainer {
   width: 60%;
   margin: 0 auto; /* Center the container horizontally */
-  border-radius: 20px; 
-  background-color: rgba(255, 255, 255, 0.7); 
-  backdrop-filter: blur(10px); 
-  padding: 20px; 
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  margin-top: 2%;
 }
 
-.recipePhoto{
-    width: 50%;
-    height: 300px;
-  
+.recipePhoto {
+  width: 50%;
+  height: 300px;
+  display: flex;
+  /* flex-direction: end; */
+  justify-content: flex-end;
 }
 
-.twentyonedata{
+.twentyonedata {
   display: none;
 }
 .singleRecipeHeader {
   display: flex;
-  color:#013544;
+  color: #013544;
   align-items: center;
   border-radius: 8px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .singleRecipeHeader img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-  border-radius: 8px; 
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 20px;
   justify-content: center;
+  margin: 5px 3px 5px 3px;
 }
 
-.singleRecipeDiv{
+.singleRecipeDiv {
   color: #013544;
 }
 
+.singleRecipeDiv h2 {
+  width: 90%;
+  margin-left: 5%;
+  text-align: center;
+  margin-bottom: 1;
+  color: #4a90a4;
+}
+.singleRecipeDiv h4 {
+  width: 90%;
+  margin-left: 5%;
+  font-size: 20;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.singleRecipeDivIngredients {
+  width: 90%;
+  margin-left: 5.5%;
+}
+
+.singleRecipeDivIngredients h3 {
+  text-align: left;
+  font-size: 25;
+  color: #5d9980;
+
+  padding-bottom: 0px;
+
+  margin-bottom: 5px;
+}
+.singleRecipeDivIngredients ul {
+  margin: 0;
+  padding-left: 15;
+  color: #4a90a4;
+  font-size: 18;
+}
+
 .recipeName {
-  flex-grow: 1; 
+  flex-grow: 1;
   width: fit-content;
   font-size: large;
+  text-align: center;
 }
 
 .recipeName h1 {
-  font-size: 24px; 
+  font-size: 70;
   margin: 0;
-  color: #4a90a4; 
+  color: #4a90a4;
 }
 
 .recipeName p {
   margin: 5px 0;
-  font-size: 14px; 
-  color: #5d9980; 
+  font-size: 30;
+  color: #5d9980;
 }
 
-
 .recipeContainer:hover {
-  background-color: #eaeaea; 
+  background-color: #eaeaea;
   transition: background-color 0.3s ease;
 }
 
-
-
-.todaysFact{
-    /* text-align: ; */
-    font-size: 30;
-    margin: 0;
-    text-align: center;
+.singleRecipeDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
-
-
+.singleRecipeDiv {
+}
+.todaysFact {
+  /* text-align: ; */
+  font-size: 30;
+  margin: 0;
+  text-align: center;
+}
 
 /* MAP PAGE */
 .MapBox {
-	width: 80%;
-	display: flex;
-	margin-left: 10%;
+  width: 80%;
+  display: flex;
+  margin-left: 10%;
   border: 1px solid black;
 }
 #map {
-	height: 500px;
-	position: relative;
-	border-right: 1px solid black;
-	width: 100%;
+  height: 500px;
+  position: relative;
+  border-right: 1px solid black;
+  width: 100%;
 }
 
-
-
- /* .mapListButton { 
+.mapListButton {
   height: 50px;
-  background-color: aquamarine;
-  border: 1px solid black;
-  z-index: 0;
- } */
-
- .mapListButton {
-  height: 50px;
-  background-color: aquamarine;
+  background-color: #4a90a4;
   border: 1px solid black;
   position: relative; /* Add this line */
+  transition: 500ms ease-out;
+}
+
+.mapListButton:hover{
+  cursor: pointer;
+  background-color: #013544;;
+  
 }
 
 .mapListButton span {
@@ -827,7 +899,7 @@ input.submit-btn:hover {
   height: 0;
   border-radius: 50%;
   background-color: darken(aquamarine, 40%);
-  transition:  0.4s ease-in-out,  0.4s ease-in-out;
+  transition: 0.4s ease-in-out, 0.4s ease-in-out;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -847,17 +919,16 @@ input.submit-btn:hover {
   background-color: aquamarine;
 }
 
-
 .mapListResetButton {
-	height: 47.5;
-	background-color: aquamarine;
-	border: 1px solid black;
+  height: 47.5;
+  background-color: aquamarine;
+  border: 1px solid black;
 }
 
-.mapListResetButton p{
+.mapListResetButton p {
   color: black;
-	font-size: 15;
-	text-align: center;
+  font-size: 15;
+  text-align: center;
 }
 
 /* .mapListButton {
@@ -889,16 +960,16 @@ input.submit-btn:hover {
   }
 } */
 .mapListButton p {
-	color: black;
-	font-size: 15;
-	text-align: center;
+  color: black;
+  font-size: 15;
+  text-align: center;
 }
 .mapList {
-	width: 20%;
-	display: flex;
-	flex-direction: column;
-	height: 500px;
-	overflow-y: auto;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  overflow-y: auto;
 }
 
 .hiddenData {
@@ -914,9 +985,9 @@ input.submit-btn:hover {
 }
 
 .jimmyHomepageImage {
-	width: 100%;
-	object-fit: fill;
-	height: 100vh;
+  width: 100%;
+  object-fit: fill;
+  height: 100vh;
   margin-top: 0%;
   background-attachment: fixed;
   background-position: center;
@@ -929,8 +1000,8 @@ input.submit-btn:hover {
 
 .TwentyOneCheckBackgroundImage {
   width: 100%;
-	object-fit: cover;
-	height: 100vh;
+  object-fit: cover;
+  height: 100vh;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -939,38 +1010,6 @@ input.submit-btn:hover {
 
   background-image: url("images/palmtree11.jpeg");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* media queries */
 @media (max-width: 710px) {
@@ -1008,8 +1047,6 @@ input.submit-btn:hover {
   }
 }
 
-
-
 @media (max-width: 890px) {
   .footerBar {
     height: 150px;
@@ -1020,4 +1057,25 @@ input.submit-btn:hover {
   .footerBar {
     height: 220px;
   }
+}
+.leaflet-pane{
+  z-index: 0 !important;
+}
+
+.leaflet-top{
+  z-index: 0 !important;
+}
+
+.margaritavilleContainer {
+  margin-top: 2%;
+}
+
+.jimmyLifeText
+{
+  font-size: 100;
+  width: 100%;
+  text-align: center;
+  color: #5d9980;
+  margin-bottom: 0px;
+  margin-top: 30%;
 }

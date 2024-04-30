@@ -173,6 +173,7 @@ app.get('/recipes', (req, res) => {
         res.redirect('/login');
       });
   } else {
+    console.log("Damn the cookie aint working!!!")
     // User is not logged in, redirect to the '/21check' page
     res.redirect('/21check');
   }
@@ -400,6 +401,10 @@ app.post("/addRecipe", upload.single("image"), requiresAuthentication, async (re
 app.post("/21CheckPost", (req, res) => {
   let dateOfBirth = req.body.birthday;
   let is21 = isUser21(dateOfBirth);
+
+  res.cookie("visits", 1, {
+    expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
+  });
 
   // Fetch the recipes data
   let databaseData = database.find({}, (err, docs) => {

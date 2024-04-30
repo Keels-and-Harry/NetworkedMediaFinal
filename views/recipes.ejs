@@ -1,6 +1,6 @@
 <%- include('nav.ejs') %>
 
-
+<!-- recipes.ejs -->
     <body>
         <p class="hiddenData">
             <%= is21 %>
@@ -27,7 +27,7 @@
                                     <p>
                                         <%= recipe.description %>
                                     </p>
-                                    <p>
+                                    <p class="hiddenData">
                                         <%= recipe.category %>
                                     </p>
                                     <% if (recipe.category=="Drinks" ) {%>

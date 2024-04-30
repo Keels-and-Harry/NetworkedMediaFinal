@@ -20,21 +20,21 @@
         <% } %>
       </div>
       
-
     </div>
     <div class="singleRecipeDiv">
-    <h1>
+    <h2>
       <%=post.description%>
-    </h1>
-    <h1>
+    </h2>
+    <h1 class="hiddenData">
       <%=post.category%>
     </h1>
     <% if(post.category=="Drinks" ){ %>
-      <h1>
+      <h1 class="hiddenData">
         <%=post.alcoholic%>
       </h1>
       <%}%>
-        <h1>Ingredients</h1>
+      <div class="singleRecipeDivIngredients">
+        <h3>Ingredients</h3>
         <ul>
           <% for (let ingredientsX=0; ingredientsX < post.ingredients.length; ingredientsX++) { %>
             <li>
@@ -42,10 +42,11 @@
             </li>
             <% } %>
         </ul>
+      </div>
 
-        <h1>
+        <h4>
           <%=post.instructions%>
-        </h1>
+        </h4>
       </div>
     </div>
   </div>
