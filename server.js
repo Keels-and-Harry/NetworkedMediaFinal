@@ -123,6 +123,7 @@ app.get('/21check', (req, res) => {
   res.render('21check.ejs');
 });
 
+
 app.get('/newpost', (req, res) => {
   res.render('newpost.ejs');
 });

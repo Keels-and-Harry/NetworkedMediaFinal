@@ -13,6 +13,130 @@
             <a href="/recipes"><button class="navButton"><p class="buttonText">Recipes</p></button></a>
             <a href="/margaritaville"><button class="navButton"><p class="buttonText">Margaritaville</p></button></a>
             <a href="/account"><button class="navButton"><p class="buttonText">Account</p></button></a>
+            <button id="playPauseButton" class="content">
+                <input type="checkbox" id="play">
+                <label for="play">
+                  <div class="letter-p"></div>
+                  <div class="letter-l"></div>
+                  <div class="letter-a"><span></span></div>
+                  <div class="letter-y"></div>
+                </label>
+              </button>
+            
+              <script >
+                const songs = [
+                {
+                    title: "Cheeseburgers in Paradise",
+                    image: "images/Track1Cover.jpeg",
+                    audio: "music/1CheeseburgerInParadise.mp3"
+                },
+                {
+                    title: "He Went to Paris",
+                    image: "images/Track2Cover.jpg",
+                    audio: "music/2HeWentToParis.mp3"
+                },
+                {
+                    title: "Fins",
+                    image: "images/Track3Cover.jpg",
+                    audio: "music/3Fins.mp3"
+                },
+                {
+                    title: "Son of a Son of a Sailor",
+                    image: "images/Track4Cover.jpg",
+                    audio: "music/4SonofaSonofaSailor.mp3"
+                },
+                {
+                    title: "A Pirate Looks at Forty",
+                    image: "images/Track4Cover.jpg",
+                    audio: "music/5APirateLooksatForty.mp3"
+                },
+                {
+                    title: "Margaritaville",
+                    image: "images/Track6Cover.jpg",
+                    audio: "music/6Margaritaville.mp3"
+                },
+                {
+                    title: "Come Monday",
+                    image: "images/Track7Cover.jpg",
+                    audio: "music/7ComeMonday.mp3"
+                },
+                {
+                    title: "Changes in Latitudes, Changes in Attitudes",
+                    image: "images/Track8Cover.jpg",
+                    audio: "music/8ChangesInLatitudesChangesInAttitudes.mp3"
+                },
+                {
+                    title: "Why Dont We Get Drunk",
+                    image: "images/Track9Cover.jpg",
+                    audio: "music/9WhyDontWeGetDrunk.mp3"
+                },
+                {
+                    title: "Pencil Thin Mustache",
+                    image: "images/Track10Cover.jpg",
+                    audio: "music/10PencilThinMustache.mp3"
+                },
+                {
+                    title: "Grapefruit Juicy Fruit",
+                    image: "images/Track11Cover.jpg",
+                    audio: "music/11GrapefruitJuicyFruit.mp3"
+                },
+                {
+                    title: "Boat Drinks",
+                    image: "images/Track10Cover.jpg",
+                    audio: "music/12BoatDrinks.mp3"
+                },
+                {
+                    title: "Volcano",
+                    image: "images/Track13Cover.jpg",
+                    audio: "music/13Volcano.mp3"
+                },
+            ];
+            let currentIndex = 0;
+                let isPlaying = false;
+                const audio = new Audio();
+            
+                // Function to shuffle the songs
+                function shuffleSongs() {
+                  for (let i = songs.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [songs[i], songs[j]] = [songs[j], songs[i]];
+                  }
+                }
+            
+                // Function to toggle play/pause
+                function togglePlayPause() {
+                  if (isPlaying) {
+                    audio.pause();
+                    document.getElementById("playPauseButton").textContent = "Play";
+                  } else {
+                    audio.play();
+                    document.getElementById("playPauseButton").textContent = "Pause";
+                  }
+                  isPlaying = !isPlaying;
+                }
+            
+                // Function to play the current song
+                function playCurrentSong() {
+                  const currentSong = songs[currentIndex];
+                  audio.src = currentSong.audio;
+                  audio.play();
+                  document.getElementById("playPauseButton").textContent = "Pause";
+                  isPlaying = true;
+                }
+            
+                // Event listener for play/pause button
+                document.getElementById("playPauseButton").addEventListener("click", togglePlayPause);
+            
+                // Event listener for when the audio ends
+                audio.addEventListener("ended", () => {
+                  currentIndex = (currentIndex + 1) % songs.length; // Move to the next song
+                  playCurrentSong(); // Play the next song
+                });
+            
+                // Initialize by shuffling and playing the first song
+                shuffleSongs();
+                playCurrentSong();
+              </script>
         </div>
     </div>
 </body>
