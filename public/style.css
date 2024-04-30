@@ -713,6 +713,12 @@ input.submit-btn:hover {
   width: 100%;
 }
 
+.singlePostBlurContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .blurHolder img {
   height: 100%;
   object-fit: cover;
@@ -752,7 +758,6 @@ input.submit-btn:hover {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .recipeContainer {
   width: 60%;
   margin: 0 auto; /* Center the container horizontally */
@@ -854,16 +859,13 @@ input.submit-btn:hover {
   transition: background-color 0.3s ease;
 }
 
-.recipeListInfo p {
-  color: var(--textColor2);
-}
-
 .singleRecipeDiv {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 
 
 .todaysFact {
@@ -988,6 +990,7 @@ input.submit-btn:hover {
 .blurRecipe {
   filter: blur(10px);
 }
+
 
 .RIPJimmy {
   width: 100%;
