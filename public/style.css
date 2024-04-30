@@ -196,6 +196,7 @@ p {
 
 .footerA {
   padding-right: 25px;
+  text-decoration: none;
 }
 
 .footerLinks a p {
@@ -203,6 +204,7 @@ p {
   margin-bottom: 0px;
   font-style: none;
   color: var(--textColor1);
+  text-decoration: none;
 }
 
 .footerCopyright {
@@ -720,6 +722,10 @@ input.submit-btn:hover {
   margin-left: 4px;
 }
 
+.recipeListA{
+  color: #4a90a4;
+}
+
 .recipeListImage img {
   /* width: 100%; */
   object-fit: contain;
@@ -848,6 +854,10 @@ input.submit-btn:hover {
   transition: background-color 0.3s ease;
 }
 
+.recipeListInfo p {
+  color: var(--textColor2);
+}
+
 .singleRecipeDiv {
   width: 100%;
   display: flex;
@@ -855,8 +865,7 @@ input.submit-btn:hover {
   justify-content: center;
 }
 
-.singleRecipeDiv {
-}
+
 .todaysFact {
   /* text-align: ; */
   font-size: 30;
@@ -1078,4 +1087,25 @@ input.submit-btn:hover {
   color: #5d9980;
   margin-bottom: 0px;
   margin-top: 30%;
+}
+
+.disclaimerContainer{
+  width: 80%;
+  color: var(--textColor2);
+  align-content: center;
+  margin-left: 10%;
+}
+
+.aboutContainer{
+  width: 80%;
+  color: var(--textColor2);
+  align-content: center;
+  margin-left: 10%;
+}
+
+.margaritavilleBlub{
+  width: 80%;
+  color: var(--textColor2);
+  align-content: center;
+  margin-left: 10%;
 }
