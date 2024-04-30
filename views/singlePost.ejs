@@ -1,58 +1,52 @@
 <head>
   <link rel="stylesheet" href="../style.css" />
 </head>
+<style>
+.blurRecipeTwo{
+  filter: blur(10px);
+}
 
-<%- include('nav.ejs') %>
+</style>
+
+<!-- <%- include('nav.ejs') %> -->
 <body class="singleRecipeBackground">
-  
+  <h1><%= data.is21 %></h1> 
+  <!-- false -->
+  <h1><%= post.alcoholic %></h1>
+  <!-- alcoholic -->
   <div class="recipeContainer">
-    <div class="singleRecipeHeader">
-      <div class="recipeName">
-        <h1 class="twentyonedata"><%= data.is21 %></h1>
-        <h1>
-          <%=post.name%>
-        </h1>
-        <p>By: <%=post.firstName%>
-        </p>
+    <div class="singlePostBlurContainer<% if (data.is21 == false){if(post.alcoholic === 'alcoholic') { %> blurRecipe<% }} %>">
+      <div class="singleRecipeHeader">
+        <div class="recipeName">
+          <h1><%=post.name%></h1>
+          <p>By: <%=post.firstName%></p>
+        </div>
+        <div class="recipePhoto">
+          <% if (post.filepath){ %>
+          <img src="<%= post.filepath %>" alt="Uploaded Image" />
+          <% } %>
+        </div>
       </div>
-      <div class="recipePhoto"><% if (post.filepath){ %>
-        <img src="<%= post.filepath %>" alt="Uploaded Image">
-        <% } %>
-      </div>
-      
-    </div>
-    <div class="singleRecipeDiv">
-    <h2>
-      <%=post.description%>
-    </h2>
-    <h1 class="hiddenData">
-      <%=post.category%>
-    </h1>
-    <% if(post.category=="Drinks" ){ %>
-      <h1 class="hiddenData">
-        <%=post.alcoholic%>
-      </h1>
-      <%}%>
-      <div class="singleRecipeDivIngredients">
-        <h3>Ingredients</h3>
-        <ul>
-          <% for (let ingredientsX=0; ingredientsX < post.ingredients.length; ingredientsX++) { %>
-            <li>
-              <%= post.ingredients[ingredientsX] %>
-            </li>
+      <div class="singleRecipeDiv">
+        <h2><%=post.description%></h2>
+        <h1 class="hiddenData"><%=post.category%></h1>
+        <% if(post.category=="Drinks" ){ %>
+        <h1 class="hiddenData"><%=post.alcoholic%></h1>
+        <%}%>
+        <div class="singleRecipeDivIngredients">
+          <h3>Ingredients</h3>
+          <ul>
+            <% for (let ingredientsX=0; ingredientsX < post.ingredients.length;
+            ingredientsX++) { %>
+            <li><%= post.ingredients[ingredientsX] %></li>
             <% } %>
-        </ul>
-      </div>
+          </ul>
+        </div>
 
-        <h4>
-          <%=post.instructions%>
-        </h4>
+        <h4><%=post.instructions%></h4>
       </div>
     </div>
   </div>
+</body>
 
-  </body>
-
-
-  <%- include('footer.ejs') %>
-
+// <%- include('footer.ejs') %>
