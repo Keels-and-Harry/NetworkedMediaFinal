@@ -3,21 +3,24 @@
 </head>
 
 <%- include('nav.ejs') %>
-
-  <body>
-   <div>
+<body class="singleRecipeBackground">
+  
+  <div class="recipeContainer">
     <div class="singleRecipeHeader">
       <div class="recipeName">
-        <h1><%= data.is21 %></h1>
+        <h1 class="twentyonedata"><%= data.is21 %></h1>
         <h1>
           <%=post.name%>
         </h1>
         <p>By: <%=post.firstName%>
         </p>
       </div>
-      <% if (post.filepath){ %>
+      <div class="recipePhoto"><% if (post.filepath){ %>
         <img src="<%= post.filepath %>" alt="Uploaded Image">
         <% } %>
+      </div>
+      
+
     </div>
     <div class="singleRecipeDiv">
     <h1>
@@ -45,7 +48,7 @@
         </h1>
       </div>
     </div>
-
+  </div>
 
   </body>
 
