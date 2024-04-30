@@ -37,6 +37,7 @@ font-style: normal;
 }
 
 
+
 /* NAV BAR STYLING */
 .navBar {
   background-color:var(--backgroundColorPop);
@@ -656,8 +657,17 @@ input.submit-btn:hover {
   height: 200px;
 }
 
-.singleRecipe img{
-  width: 200px;
+.blurHolder{
+    display: flex;
+    width: 100%;
+  
+}
+
+.blurHolder img{
+ 
+    height: 100%;
+    object-fit: cover;
+  
 }
 
 
@@ -896,7 +906,7 @@ input.submit-btn:hover {
 }
 
 .blurRecipe {
-  filter: blur(20px);
+  filter: blur(10px);
 }
 
 .RIPJimmy {
