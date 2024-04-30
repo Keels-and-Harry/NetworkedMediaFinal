@@ -139,6 +139,10 @@ app.get('/signup', (req, res) => {
   res.render('signup.ejs');
 });
 
+app.get('/slides', (req,res) => {
+  res.redirect('https://www.google.com/')
+})
+
 
 app.get('/about', (req, res) => {
   res.render('about.ejs');
