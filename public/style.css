@@ -1105,7 +1105,12 @@ input.submit-btn:hover {
 
 .margaritavilleBlub{
   width: 80%;
+  margin-top: 20px;
   color: var(--textColor2);
   align-content: center;
   margin-left: 10%;
+}
+
+.margaritavilleBody {
+  min-height: 80vh;
 }
