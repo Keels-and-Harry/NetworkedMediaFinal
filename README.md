@@ -1,6 +1,2 @@
 # NetworkedMediaFinal
- Harry and Keels Jimmy Buffet Website
-
-RIP Jimmy Buffet
-
-hello world
+ Harry and Keels Jimmy Buffett Website
